@@ -73,4 +73,5 @@ plt.title("Number of indirect branch misses for a given number of indirect branc
 plt.xlabel("Number of indirect branch instructions")
 plt.ylabel("Number of indirect branch misses")
 plt.plot(branches_arr, num_misses)
+plt.yscale("log")
 plt.savefig("plots/size_even_odd.png")
