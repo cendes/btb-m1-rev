@@ -1,0 +1,67 @@
+#include <linux/fs.h>
+#include <linux/kobject.h>
+#include <linux/module.h>
+#include <linux/string.h>
+#include <linux/sysfs.h>
+
+#define PMCR0 "S3_1_c15_c0_0"
+
+static struct kobject* pmcr0_module;
+
+//static size_t pmcr0_val;
+
+static ssize_t pmcr0_show(struct kobject *kobj, struct kobj_attribute *attr, char *buf) {
+  size_t pmcr0_val;
+
+  __asm__ volatile (
+      "mrs %0, "PMCR0" \n"
+      : "=r"(pmcr0_val)
+  );
+
+  pr_info("pmcr0_module: successfully read PMCR0");
+
+  return sprintf(buf, "%lx\n", pmcr0_val);
+}
+
+static ssize_t pmcr0_store (struct kobject *kobj, struct kobj_attribute *attr, char *buf, size_t count) {
+  size_t pmcr0_val;
+  sscanf(buf, "%lx", &pmcr0_val);
+
+  __asm__ volatile (
+      "msr "PMCR0", %0 \n"
+      : "=r"(pmcr0_val)
+  );
+
+  pr_info("pmcr0_module: successfully wrote to PMCR0");
+
+  return count;
+}
+
+static struct kobj_attribute pmcr0_attribute = __ATTR(pmcr0_val, 0660, pmcr0_show, (void *)pmcr0_store);
+
+static int pmcr0_module_init(void) {
+  pr_info("pmcr0_module: initializing module\n");
+  
+  pmcr0_module = kobject_create_and_add("pmrc0", kernel_kobj);
+  if (pmcr0_module == NULL) {
+    pr_err("pmcr0_module: failed to create kobject\n");
+    return -ENOMEM;
+  }
+
+  int ret = sysfs_create_file(pmcr0_module, &pmcr0_attribute.attr);
+  if (ret != 0) {
+    pr_err("pmcr0_module: failed to create sysfs file");
+  }
+
+  return ret;
+}
+
+static void pmcr0_module_exit(void) {
+  pr_info("pmcr0_module: exited successfully\n");
+  kobject_put(pmcr0_module);
+}
+
+module_init(pmcr0_module_init);
+module_exit(pmcr0_module_exit);
+
+MODULE_LICENSE("GPL");

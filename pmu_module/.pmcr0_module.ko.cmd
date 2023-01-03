@@ -1,0 +1,1 @@
+cmd_/home/cendes/pmu_module/pmcr0_module.ko := ld -r -EL  -maarch64elf -z noexecstack --no-warn-rwx-segments --build-id=sha1  -T arch/arm64/module.lds -o /home/cendes/pmu_module/pmcr0_module.ko /home/cendes/pmu_module/pmcr0_module.o /home/cendes/pmu_module/pmcr0_module.mod.o;  true
