@@ -69,9 +69,10 @@ for i in range(start, end):
         curr_branches *= 2
         num_branches *= 2
 
-plt.title("Number of indirect branch misses for a given number of indirect branches in a loop")
-plt.xlabel("Number of indirect branch instructions")
-plt.ylabel("Number of indirect branch misses")
 plt.plot(branches_arr, num_misses)
 plt.xscale("log", base=2)
+plt.xticks(branches_arr)
+plt.title("Number of indirect branch misses for a given number of indirect branches in a loop", wrap=True)
+plt.xlabel("Number of indirect branch instructions")
+plt.ylabel("Number of indirect branch misses")
 plt.savefig("plots/size_even_odd.png")
