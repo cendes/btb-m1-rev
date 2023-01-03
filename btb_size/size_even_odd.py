@@ -53,7 +53,7 @@ for i in range(start, end):
 
     print(str(curr_branches) + " branches: " + result)
     branches_arr.append(curr_branches)
-    branches_arr.append(int(result))
+    num_misses.append(int(result))
 
     e_file = open("branches_even.h", "a")
     o_file = open("branches_odd.h", "a")
