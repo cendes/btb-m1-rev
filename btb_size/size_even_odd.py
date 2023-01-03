@@ -36,6 +36,9 @@ for _ in range(int((start - 1)/2)):
     o_file.write(BRANCH_ODD)
 o_file.close()
 
+branches_arr = list()
+num_misses = list()
+
 num_branches = 1
 for i in range(start, end):
     try:
@@ -49,6 +52,8 @@ for i in range(start, end):
         print("running ./btb_size returned an error")
 
     print(str(curr_branches) + " branches: " + result)
+    branches_arr.append(curr_branches)
+    branches_arr.append(int(result))
 
     e_file = open("branches_even.h", "a")
     o_file = open("branches_odd.h", "a")
@@ -63,3 +68,9 @@ for i in range(start, end):
     else:
         curr_branches *= 2
         num_branches *= 2
+
+plt.title("Number of indirect branch misses for a given number of indirect branches in a loop")
+plt.xlabel("Number of indirect branch instructions")
+plt.ylabel("Number of indirect branch misses")
+plt.plot(branches_arr, num_misses)
+plt.savefig("plots/size_even_odd.png")
