@@ -57,7 +57,9 @@ for i in range(max_nops):
         b_file.write(BRANCH_INSTR)
     b_file.close()
 
-plt.plot(result_set)
-plt.xlabel("Number of NOP instructions between branches")
-plt.ylabel("Number of BTB misses")
-plt.savefig("conflicts_plot.png")
+plt.plot(range(4, max_nops * 4 + 1, 4), result_set)
+plt.xticks(range(44, max_nops * 4 + 1, 44))
+plt.title("Number of misses with " + sys.argv[1] + " indirect branches separated by each respective number of bytes", wrap=True)
+plt.xlabel("Number of bytes between each indirect branch")
+plt.ylabel("Number of indirect branch misses")
+plt.savefig("plots/size_conflicts_" + sys.argv[1] + ".png")
