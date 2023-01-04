@@ -4308,21 +4308,6 @@
 "add  x10, x10, 4   \n" \
 "add  x10, x10, 4   \n" \
 "add  x10, x10, 4   \n" \
-"add  x10, x10, 4   \n" \
-"add  x10, x10, 4   \n" \
-"add  x10, x10, 4   \n" \
-"add  x10, x10, 4   \n" \
-"add  x10, x10, 4   \n" \
-"add  x10, x10, 4   \n" \
-"add  x10, x10, 4   \n" \
-"add  x10, x10, 4   \n" \
-"add  x10, x10, 4   \n" \
-"add  x10, x10, 4   \n" \
-"add  x10, x10, 4   \n" \
-"add  x10, x10, 4   \n" \
-"add  x10, x10, 4   \n" \
-"add  x10, x10, 4   \n" \
-"add  x10, x10, 4   \n" \
 "ldr x11, [x3]      \n" \
 "add x10, x10, x11  \n" \
 "ldr x12, [x3, #8]  \n" \

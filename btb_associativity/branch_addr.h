@@ -1,1 +1,1 @@
-#define BRANCH_ADDRS {0x78e2745da07c, 0x3dde4eee007c}
+#define BRANCH_ADDRS {0x200023fdc, 0x200019fec, 0x20001a07c}
