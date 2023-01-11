@@ -45,13 +45,10 @@ curr_branch = test_branch_addr | (upper_bits << 32)
 branches.append(curr_branch)
 last_target = test_branch_addr + 4
 
-for i in range(31):
+for i in range(2, 31, 1):
     upper_bits = random.getrandbits(14)
     flipped_branch = (test_branch_addr ^ (0x1 << i)) | (upper_bits << 32)
     branches.append(flipped_branch)
-
-    for branch in branches:
-        print(hex(branch))
 
     a_file = open("branch_addr.h", "w")
     a_file.write("#define BRANCH_ADDRS {" + ", ".join([hex(x - 44) for x in branches[1:]]) + "}\n")
