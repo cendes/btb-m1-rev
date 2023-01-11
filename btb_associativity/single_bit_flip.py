@@ -51,7 +51,7 @@ for i in range(2, 31, 1):
     branches.append(flipped_branch)
 
     a_file = open("branch_addr.h", "w")
-    a_file.write("#define BRANCH_ADDRS {" + ", ".join([hex(x - 44) for x in branches[2:]]) + "}\n")
+    a_file.write("#define BRANCH_ADDRS {" + ", ".join([hex(x - 44) for x in branches[1:]]) + "}\n")
     a_file.close()
 
     first_addr = min(branches) - 52
@@ -72,7 +72,7 @@ for i in range(2, 31, 1):
     o_file = open("offsets.h", "w")
     o_file.write("#define OFFSET_ARRAY {" + ", ".join([str(x) for x in target_offsets]) + "}\n")
     o_file.write("#define NUM_BRANCHES " + str(len(branches)) + "\n")
-    o_file.write("#define NUM_RANDS " + str(len(branches) - 2) + "\n")
+    o_file.write("#define NUM_RANDS " + str(len(branches) - 1) + "\n")
     o_file.close()
 
     instructions = list()
