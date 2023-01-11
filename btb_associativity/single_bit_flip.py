@@ -83,7 +83,7 @@ for i in range(2, 31, 1):
     o_file = open("offsets.h", "w")
     o_file.write("#define OFFSET_ARRAY {" + ", ".join([str(x) for x in target_offsets]) + "}\n")
     o_file.write("#define NUM_BRANCHES " + str(len(branches)) + "\n")
-    o_file.write("#define NUM_RANDS " + str(len(upper_branches) - 1) + "\n")
+    o_file.write("#define NUM_RANDS " + str(len(upper_branches)) + "\n")
     o_file.close()
 
     instructions = list()
