@@ -50,6 +50,9 @@ for i in range(31):
     flipped_branch = (test_branch_addr ^ (0x1 << i)) | (upper_bits << 32)
     branches.append(flipped_branch)
 
+    for branch in branches:
+        print(hex(branch))
+
     a_file = open("branch_addr.h", "w")
     a_file.write("#define BRANCH_ADDRS {" + ", ".join([hex(x - 44) for x in branches[1:]]) + "}\n")
     a_file.close()
