@@ -38,7 +38,7 @@ l_file.write("#define BRANCH_LEN " + str(BRANCH_LEN) + "\n")
 l_file.close()
 
 branches = list()
-test_branch_addr = random.randrange(LOOP_START + 50, LOOP_END) & ~0x3
+test_branch_addr = 0x1a0a8
 branches.append(test_branch_addr)
 upper_bits = random.getrandbits(14)
 curr_branch = test_branch_addr | (0x1 << 32)
@@ -71,8 +71,8 @@ for i in range(2, 31, 1):
         target_offsets.append(curr_target - init_addr)
     o_file = open("offsets.h", "w")
     o_file.write("#define OFFSET_ARRAY {" + ", ".join([str(x) for x in target_offsets]) + "}\n")
-    o_file.write("#define NUM_BRANCHES " + str(3) + "\n")
-    o_file.write("#define NUM_RANDS " + str(2) + "\n")
+    o_file.write("#define NUM_BRANCHES " + str(len(branches)) + "\n")
+    o_file.write("#define NUM_RANDS " + str(len(branches) - 1) + "\n")
     o_file.close()
 
     instructions = list()
