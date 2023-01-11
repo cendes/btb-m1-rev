@@ -28,7 +28,7 @@ LOOP_START = 0x19d28
 LOOP_END = 0x30000
 
 BRANCH_LEN = 44
-EVICTION_SET = [0x1e098, 0x1a0a8, 0x24008, 0x1a018]
+EVICTION_SET = [0x1e098, 0x1a0a8, 0x200a8]
 
 i_file = open("branch_inc.h", "w")
 i_file.write(BRANCH_INC_CONST)
