@@ -51,7 +51,7 @@ for i in range(2, 31, 1):
     branches.append(flipped_branch)
 
     a_file = open("branch_addr.h", "w")
-    a_file.write("#define BRANCH_ADDRS {" + ", ".join([hex(x - 44) for x in branches[1:]]) + "}\n")
+    a_file.write("#define BRANCH_ADDRS {" + ", ".join([hex(x - 44) for x in branches[2:]]) + "}\n")
     a_file.close()
 
     first_addr = min(branches) - 52
