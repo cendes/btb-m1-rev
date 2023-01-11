@@ -41,9 +41,9 @@ branches = list()
 test_branch_addr = 0x1a0a8
 branches.append(test_branch_addr)
 #upper_bits = random.getrandbits(14)
-curr_branch = 0x1e098 | (0x1 << 32)
+curr_branch = test_branch_addr | (0x1 << 32)
 branches.append(curr_branch)
-last_target = curr_branch + 4
+last_target = test_branch_addr + 4
 
 for i in range(2, 31, 1):
     #upper_bits = random.getrandbits(14)
