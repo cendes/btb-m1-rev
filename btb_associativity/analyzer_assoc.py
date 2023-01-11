@@ -27,7 +27,7 @@ BRANCH_INSTR =  "\"br   x10           \\n\" \\\n"
 LOOP_START = 0x19d28
 LOOP_END = 0x30000
 
-NUM_BRANCHES = 2
+NUM_BRANCHES = 1
 BRANCH_LEN = 44
 
 i_file = open("branch_inc.h", "w")
