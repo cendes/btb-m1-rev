@@ -41,13 +41,13 @@ branches = list()
 test_branch_addr = random.randrange(LOOP_START + 50, LOOP_END) & ~0x3
 branches.append(test_branch_addr)
 upper_bits = random.getrandbits(14)
-curr_branch = test_branch_addr | (upper_bits << 32)
+curr_branch = test_branch_addr | (0x1 << 32)
 branches.append(curr_branch)
 last_target = test_branch_addr + 4
 
 for i in range(2, 31, 1):
     upper_bits = random.getrandbits(14)
-    flipped_branch = (test_branch_addr ^ (0x1 << i)) | (upper_bits << 32)
+    flipped_branch = (test_branch_addr ^ (0x1 << i)) | (0x1 << 33)
     branches.append(flipped_branch)
 
     a_file = open("branch_addr.h", "w")
