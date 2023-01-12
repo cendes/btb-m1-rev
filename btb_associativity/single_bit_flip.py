@@ -38,10 +38,10 @@ l_file.write("#define BRANCH_LEN " + str(BRANCH_LEN) + "\n")
 l_file.close()
 
 branches = list()
-test_branch_addr = 0x1a0a8
+test_branch_addr = random.randrange(LOOP_START + 50, LOOP_END) & ~0x3
 branches.append(test_branch_addr)
 #upper_bits = random.getrandbits(14)
-curr_branch = 0x1e098 | (0x1 << 32)
+curr_branch = test_branch_addr | (0x11 << 32)
 branches.append(curr_branch)
 last_target = test_branch_addr + 4
 
