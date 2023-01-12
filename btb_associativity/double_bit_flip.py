@@ -131,6 +131,9 @@ for i in range(6, 31, 1):
                 result = subprocess.run("./btb_upper_set", stdout=subprocess.PIPE).stdout.decode("utf-8")
             except Exception as e:
                 print("running ./btb_upper_set returned an error", str(e))
+                result = None
+            if result is None or not result.isdigit():
+                continue
             num_misses += int(result)
 
         print("Number for flips at bits " + str(i) + " and " + str(j) + "(" + str([hex(x) for x in branches]) + "): " + str(num_misses))
