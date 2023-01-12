@@ -37,16 +37,13 @@ l_file = open("branch_len.h", "w")
 l_file.write("#define BRANCH_LEN " + str(BRANCH_LEN) + "\n")
 l_file.close()
 
-branches = list()
-test_branch_addr = random.randrange(LOOP_START + 50, LOOP_END) & ~0x3
-branches.append(test_branch_addr)
-#upper_bits = random.getrandbits(14)
-curr_branch = test_branch_addr | (0x1 << 32)
-branches.append(curr_branch)
-last_target = test_branch_addr + 4
-
 for i in range(6, 31, 1):
-    #upper_bits = random.getrandbits(14)
+    branches = list()
+    test_branch_addr = random.randrange(LOOP_START + 50, LOOP_END) & ~0x3
+    branches.append(test_branch_addr)
+    curr_branch = test_branch_addr | (0x1 << 32)
+    branches.append(curr_branch)
+    last_target = test_branch_addr + 4
     flipped_branch = (test_branch_addr ^ (0x1 << i)) | (0x1 << 32)
     branches.append(flipped_branch)
 
@@ -133,4 +130,4 @@ for i in range(6, 31, 1):
         num_misses += int(result)
 
     print("Number for flip at bit " + str(i) + "(" + str([hex(x) for x in branches]) + "): " + str(num_misses))
-    branches.remove(flipped_branch)
+    #branches.remove(flipped_branch)
