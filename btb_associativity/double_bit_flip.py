@@ -143,12 +143,12 @@ for i in range(6, 31, 1):
 
 # Remove inconsistencies
 for (i, j) in copy.deepcopy(high_flips):
-    if not (j, i) in high_flips:
+    if (j, i) not in high_flips:
         high_flips.remove((i, j))
 
-# Remove repeats
-for (i, j) in copy.deepcopy(high_flips):
-    if (j, i) in high_flips:
-        high_flips.remove((j, i))
+# # Remove repeats
+# for (i, j) in copy.deepcopy(high_flips):
+#     if (j, i) in high_flips:
+#         high_flips.remove((j, i))
 
 print("Bit flips with high number of misses: " + str(high_flips))
