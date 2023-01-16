@@ -37,6 +37,8 @@ l_file = open("branch_len.h", "w")
 l_file.write("#define BRANCH_LEN " + str(BRANCH_LEN) + "\n")
 l_file.close()
 
+high_flips = list()
+
 for i in range(6, 31, 1):
     for j in range(6, 31, 1):
         if i == j:
@@ -136,4 +138,17 @@ for i in range(6, 31, 1):
             num_misses += int(result)
 
         print("Number for flips at bits " + str(i) + " and " + str(j) + "(" + str([hex(x) for x in branches]) + "): " + str(num_misses))
-        #branches.remove(flipped_branch)
+        if num_misses >= 4000:
+            high_flips.append((i, j))
+
+# Remove inconsistencies
+for (i, j) in copy.deepcopy(high_flips):
+    if not (j, i) in high_flips:
+        high_flips.remove((i, j))
+
+# Remove repeats
+for (i, j) in copy.deepcopy(high_flips):
+    if (j, i) in high_flips:
+        high_flips.remove((j, i))
+
+print("Bit flips with high number of misses: " + str(high_flips))
